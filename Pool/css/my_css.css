@@ -1,0 +1,76 @@
+
+.err{
+    font-size: 18px;
+    color: #03B3ED;
+}
+.usersubbtn{
+	    width: 80% !important;
+    background: #03B3ED !important;
+    font-size: 14px !important;
+    border: none !important;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    padding: 10px 0px !important;
+}
+
+.usersubbtn:hover{
+    background: #051423 !important;
+    Color: #fff !important;
+}
+.msg{
+    font-size: 18px;
+    color: #03B3ED;
+}
+.a_err{
+    font-size: 18px;
+    color: red;
+}
+.image_err1{
+    font-size: 17px;
+    padding-left: 15px;
+    color: #03B3ED;
+}
+.fileUpload{
+    overflow: visible !important;
+}
+.str_now{
+    background: #03B3ED;
+    outline: none;
+    padding: 11px 16px 11px 16px !important;
+    width: 100% !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    color: #fff !important;
+    cursor: pointer;
+
+}
+
+.str_now:hover{
+    color: #333 !important;
+    text-decoration: none !important;
+}
+
+.modal-dialog11 {
+    margin-left: -260px !important;
+    position: fixed;
+    left: 40% !important;
+    top: -100%;
+    z-index: 22;
+    width: 62% !important;
+    -webkit-transform: translate(0, -500%);
+    -ms-transform: translate(0, -500%);
+    transform: translate(0, -500%);
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    -moz-transition: -moz-transform 0.3s ease-out;
+    -o-transition: -o-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+}
+
+.modal:target + .modal-dialog11 {
+    top: 10% !important;
+}
+.lbl{
+    color: #03B3ED;
+    font-size: 17px;
+}

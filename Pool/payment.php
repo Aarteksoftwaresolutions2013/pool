@@ -1,0 +1,253 @@
+<?php session_start(); ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Full Slider - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/full-slider.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/font-awesome.css"/>
+         <link rel="stylesheet" href="css/build.css"/>
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,600' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+
+   <?php include "header.php"; ?>
+<div class="wrap">
+
+  
+</div>
+ 
+<!-- Modal -->
+<div class="container-fluid user">
+  <div class="container usercontent">
+
+        <div class="row">
+
+            
+
+            <div class="col-md-9 userform createpool">
+
+                <div class="row carousel-holder">
+  
+  
+                    <div class="col-md-12">
+                      <div class="col-md-12">  <h2>Payment</h2></div>
+                        
+<div class="col-lg-6">
+
+                        <div class="form-group">
+                       <label>Select Card</label>
+                       <select class="form-control" id="sel1">
+    <option selected="">Select Card </option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+  </select>
+</div>
+</div>
+
+<div class="col-lg-6 ">
+                        <div class="form-group">
+                        
+                        
+                        <label>Card Number</label>
+                      
+                    <input type="text" placeholder="Card Number" class="form-control" id="usr" >
+
+
+
+</div>
+</div>
+    
+<div class="clearfix"></div>
+
+<div class="col-lg-6">
+                      <div class="col-lg-4 nopad ">
+                        <div class="form-group">
+                        <label>CSC</label>
+                      
+                    <input type="text" placeholder="CSC" class="form-control" id="usr" >
+</div>
+</div>
+
+<div class="col-lg-8 ">
+                        <div class="form-group">
+                        <label>Expiration date</label>
+                        <div class="col-lg-5 nopad" style="margin-right:10px;">
+    <select class="form-control" id="sel1">
+    <option selected="">01</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+  </select>
+    </div>
+     <div class="col-lg-6 nopad">
+     <select class="form-control" id="sel1">
+    <option selected="">2016</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+  </select>
+     </div>
+</div>
+</div>
+
+
+
+</div>
+<div class="col-lg-6 nopad ">
+<div class="col-lg-6 ">
+                        <div class="form-group">
+                        <label>First Name</label>
+    <input type="text" placeholder="First Name" class="form-control" id="usr" >
+</div>
+</div>
+
+<div class="col-lg-6 ">
+                        <div class="form-group">
+                        <label>Last Name</label>
+    <input type="text" placeholder="Last Name" class="form-control" id="usr" >
+</div>
+</div>
+</div>
+<div class="col-lg-12">
+                        
+                        
+                        <div class="form-group">
+                        <label>Address</label>
+    <textarea rows="3" class="form-control"  > Address</textarea>
+   
+</div>
+      </div>                  
+<div class="col-lg-6 nopad">
+                        
+       <div class="col-lg-6">                 
+                        <div class="form-group">
+                        <label>City</label>
+    <input type="text" placeholder="Minimum Pool Amount" class="form-control" id="usr" >
+   </div>
+</div>
+         <div class="col-lg-6">                 
+                        <div class="form-group">
+                        <label>State</label>
+    <input type="text" placeholder="Minimum Pool Amount" class="form-control" id="usr" >
+   </div>
+</div>               
+
+</div>
+
+<div class="col-lg-6">
+                        
+                        
+                        <div class="form-group">
+                     <label>Zip</label>
+    <input type="text" placeholder="Zip" class="form-control" id="usr" >
+                         
+   
+</div>
+                        
+
+</div>
+<div class="col-lg-6 usercontact">
+<div class="col-lg-4 usercontact nopaddleft nopaddright">
+<p>
+                    <a class="btn btn-default btn-lg usersubbtn" href="#">SUBMIT</a>
+                </p>
+                
+                </div>
+                <div class="col-lg-5 usercontact  nopaddleft nopaddright">
+                <p>
+                    <a class="btn btn-default btn-lg userreset" href="#">CLEAR</a>
+                </p>
+                </div>
+                </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                   
+                    
+                    
+                    
+</div>
+                </div>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+</div><!-- /Modal -->
+
+
+       
+    <!-- /.container -->
+  <?php include "footer.php"; ?>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
+<script>    
+    document.getElementById("uploadBtn").onchange = function () {
+    document.getElementById("uploadFile").value = this.value;
+};
+    </script>
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+ <!-- !Developed and design by rajnisonkar.com -->
+</body>
+
+</html>
