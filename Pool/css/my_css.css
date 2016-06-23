@@ -1,4 +1,8 @@
-
+.errc{
+    font-size: 17px;
+	 padding-left: 0px;
+    color: #03B3ED;
+}
 .err{
     font-size: 18px;
     color: #03B3ED;
@@ -74,3 +78,23 @@
     color: #03B3ED;
     font-size: 17px;
 }
+
+.modal-dialog12 {
+	 color: #555;
+    background-color: #fff;
+	border-radius: 4px;
+    margin-left: -235px !important;
+    position: fixed;
+    left: 44% !important;
+     top: 25% !important;
+    z-index: 22;
+    width: 48% !important;
+    -webkit-transform: translate(0, -500%);
+    -ms-transform: translate(0, -500%);
+    transform: translate(0, -500%);
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    -moz-transition: -moz-transform 0.3s ease-out;
+    -o-transition: -o-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+}
+

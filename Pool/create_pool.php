@@ -5,6 +5,7 @@ if(!isset($_SESSION['id'])){
 }
 include 'config.php'; 
 //include "main.php";
+//echo "abc=".$_SESSION['id'];	
 
 if(isset($_POST['cp_save'])){
 
@@ -19,7 +20,7 @@ if(isset($_POST['cp_save'])){
 	   $services=$_POST['services'];
 	    $mcontact=$_POST['mcontact'];
 	     $amount=$_POST['amount'];
-	 
+	     $login_id=$_SESSION['id'];
 	
 	      //$select2=$_POST['select2'];
 	
@@ -41,12 +42,12 @@ if(isset($_POST['cp_save'])){
 	
 
 	$password=generate_random_password(6);
-	echo "password=".$password;
-	
+	//echo "password=".$password;
+	$_SESSION['pass']=$password;
  $pop=mysqli_query($con,"SELECT * FROM create_pool WHERE ` project_identifier`='".$password."'");
 	$row_fetch=mysqli_fetch_assoc($pop);
 $countt=mysqli_num_rows($pop);
-		echo "idd=".$countt;
+		//echo "idd=".$countt;
  
 	//die();
 	
@@ -121,9 +122,9 @@ if ($uploadOk == 0) {
 	
   if($countt<1){
  
-	$sql=mysqli_query($con,"INSERT INTO `create_pool` (`title`,`image`,`pool_close_date`,`pool_amount`,`bank_name`,`min_pool_amount`,`option_services`,`method_of_contact`,`pool_funds`,` project_identifier`)VALUES('".$title."','".$image."','".$date."','".$pamount."','".$bank_name."','".$mamount."','".$services."','".$mcontact."','".$amount."','".$password."')");		
-	header('location:create_pool.php?pid="'.$password.'"');
-	echo "idd=".$password;
+	$sql=mysqli_query($con,"INSERT INTO `create_pool` (`login_id`,`title`,`image`,`pool_close_date`,`pool_amount`,`bank_name`,`min_pool_amount`,`option_services`,`method_of_contact`,`pool_funds`,` project_identifier`)VALUES('".$login_id."','".$title."','".$image."','".$date."','".$pamount."','".$bank_name."','".$mamount."','".$services."','".$mcontact."','".$amount."','".$password."')");		
+	header('location:create_pool.php?pid='.$password.'#modal-four');
+	//echo "idd=".$password;
 	
  }
 	else{
@@ -138,7 +139,9 @@ if ($uploadOk == 0) {
 
 if(isset($_GET['pid'])){
 	
-	$q=mysqli_query($con,"SELECT * FROM personal_info WHERE id='".$_SESSION['id']."' ");
+	//echo "piiiiiiid=". $_GET['pid'];
+	
+	$q=mysqli_query($con,"SELECT * FROM create_pool  WHERE ` project_identifier`'".$_GET['pid']."' ");
 	$row_fetch=mysqli_fetch_assoc($q);
 	$count=mysqli_num_rows($q);
 	if($count>0){
@@ -147,10 +150,10 @@ if(isset($_GET['pid'])){
 		
 	$to= $email;
             
-                $subject= "New Password";
-				$message= "Congratulations on opening your POOL project titled<span style='color:red'>" .$row_fetch['email']. "</span>. Your POOL project ID is<span style='color:red'>" .$_GET['pid']. "</span>. This ID can be used to locate/contribute to your project. In addition, the link below can be used for the same purposes.
+                $subject= "POOL project";
+				$message= "Congratulations on opening your POOL project titled<span style='color:red'>" .$row_fetch['title']. "</span>. Your POOL project ID is<span style='color:red'>" .$_GET['pid']. "</span>. This ID can be used to locate/contribute to your project. In addition, the link below can be used for the same purposes.
 
-http://localhost/Pool/create_pool.php?<span style='color:red'>" .$_GET['pid']. "</span>";
+http://create_pool.php?<span style='color:red'>" .$_GET['pid']. "</span>";
 			
 				$message .= "POOL by Phone Services: 1-800-XXX-XXXX <br><br>";
 			
@@ -165,7 +168,7 @@ http://localhost/Pool/create_pool.php?<span style='color:red'>" .$_GET['pid']. "
 				$headers .= "From: hrd@prestigepoint.in\r\n";
 				@mail($to, $subject, $message, $headers);
 		
-	echo "Email sent";
+	//echo "Email sent";
 	
 		
 	}
@@ -192,10 +195,19 @@ if(isset($_POST['form_submit'])){
 }*/
 
 
- //   $q=mysqli_query($con,"SELECT * FROM create_pool_popup");
+    $q1=mysqli_query($con,"SELECT * FROM create_pool_popup WHERE login_id='".$_SESSION['id']."'");
 	/*$row_fetch1=mysqli_fetch_assoc($q1);
 echo $row_fetch1['account_nickname'];*/
+$p4=mysqli_query($con,"SELECT * FROM personal_info WHERE id='".$_SESSION['id']."' ");
+	$row_fetch4=mysqli_fetch_assoc($p4);
+	$count4=mysqli_num_rows($q);
 
+
+	
+	$p5=mysqli_query($con,"SELECT * FROM create_pool  WHERE ` project_identifier` ='".$_SESSION['pass']."' ");
+	$row_fetch5=mysqli_fetch_assoc($p5); 
+   // echo $_SESSION['pass'];
+   // echo $row_fetch5['title'] ; 
 mysqli_close($con);
 ?>
 
@@ -265,6 +277,8 @@ mysqli_close($con);
 							maxErrorsPerField: 1
 						}
 					);
+				 
+
             }
         });
 			
@@ -281,17 +295,25 @@ mysqli_close($con);
            
 
             if (valid == true) {
-
+				
+           var	Data1 = $("#formID4").serialize();
+			//console.dir(Data1);
+			//$("formID4").find("input[type=text], textarea").val("");
+	         popup11(Data1);
+			 document.getElementById('formID4').reset();
+		     $('#amount1').click();
+				
            return true;
 
             } else {
-               
+              
 				$('#formID4').validationEngine(
 						'attach', {
 							
 							maxErrorsPerField: 1
 						}
 					);
+				  event.preventDefault();
             }
         });
 			
@@ -320,47 +342,8 @@ mysqli_close($con);
 		
 			
 			
-		$('#submit4').on('click',function(){		
-			
-			var	Data1 = $("#formID4").serialize();
-			//console.dir(Data1);
-			//$("formID4").find("input[type=text], textarea").val("");
-	         popup11(Data1);
 	
-			});	
-			
 		
-			
-			
-		
-	
-	/*$( "form" ).click(function() {
-	//alert("form");
-	 var value_array= $("form").serialize();
-		alert(value_array);
-  console.log( $( this ).serializeArray() );
-  event.preventDefault();
-});		*/
-			
-	/*	var amount1 = document.getElementById("amount1");
-		var amount2 = document.getElementById("amount2");
-			
-		if (amount1.checked){
-			alert("radio1 selected");
-			//document.getElementById('banking').style.display = 'block';
-			//$('#banking').('display','block');
-		}else{
-			
-			$('#amount2').on('click',function(){		
-			alert("radio2 selected");
-			});
-			//document.getElementById('banking').style.display = 'block';
-				//$('#banking').css('display','none');
-		}
-		
-			//$('#amount1').on('click',function(){			
-			//});
-			*/
 		});
 		</script>
 </head>
@@ -375,6 +358,41 @@ mysqli_close($con);
 </div>
  
 <!-- Modal -->
+<!-- Modal4 -->
+<a href="#" class="modal" id="modal-four" aria-hidden="true">
+  </a>
+  <div class="modal-dialog modal-dialog12 ">
+    <div class="modal-header">
+      
+      <a href="#" class="btn-close" aria-hidden="true">×</a>
+    </div>
+    <div class="modal-body">
+    <h2 style='color:#03B3ED'>Confirmation</h2>
+     <div id="my-tab-content" class="tab-content" style="margin-top: 3%;">
+		 <?php if(isset($_GET['pid'])){ ?>
+       <div class="form-group">
+		   
+		   <p style="font-size: 15px;font-family: arial;line-height: 1.5;"> Congratulations on opening your POOL project titled <span style='color:#03B3ED'><?php echo $row_fetch5['title'] ;?></span> . Your POOL project ID is <span style='color:#03B3ED'><?php echo $_GET['pid'];?></span> . This ID can be used to locate/contribute to your project. In addition, the link below can be used for the same purposes.
+
+http://create_pool.php?<span style='color:#03B3ED'><?php echo $_GET['pid']; ?> </span><br><br>POOL by Phone Services: 1-800-XXX-XXXX </p>
+		  
+        </div> 
+    <div class="modal-footer">
+    <a href="user.php?id=<?php echo $_GET['pid']; ?>" class="btn">Close</a>
+    </div> 
+		 <?php } ?>
+</div>
+    </div>
+    
+  </div>
+
+<!-- /Modal4 -->
+	
+	
+	
+	
+	
+	<!-- Modal3 -->
 	<a href="#" class="modal" id="modal-three" aria-hidden="true">
   </a>
   <div class="modal-dialog modal-dialog11">
@@ -384,6 +402,7 @@ mysqli_close($con);
     </div>
     <div class="modal-body" style="padding-top: 0;">
     <h2 style="padding-top: 0;">Form</h2>
+	<?php 	//echo "abc=".$_SESSION['id'];	?>
      <div id="my-tab-content" style="margin-top: 0;" class="tab-content">
 		 <div class="col-lg-12"> 
        <form action="" method="post" id="formID4" name="formID4"class="formular">
@@ -450,7 +469,7 @@ mysqli_close($con);
    
   </div>
 
-<!-- /Modal2 -->
+<!-- /Modal3 -->
 	
 <div class="container-fluid user">
   <div class="container usercontent">
@@ -562,11 +581,9 @@ mysqli_close($con);
 					<br><br>		
                 <select class="validate[required] form-control" name="bank_name" id="banking">
     <option selected> Saved Banking </option>
-
-					
-	<?php  //while($row_fetch=mysqli_fetch_assoc($q1)){ ?>				
-   <!-- <option><?php //echo $row_fetch['account_nickname']; ?></option>-->
-	<?php //} ?>				
+	<?php  while($row_fetch=mysqli_fetch_assoc($q1)){ if($row_fetch['account_nickname']!=""){?>				
+    <option><?php echo $row_fetch['account_nickname']; ?></option>
+	<?php } } ?>				
    
   </select>
                                 

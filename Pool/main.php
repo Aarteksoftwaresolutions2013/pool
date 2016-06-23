@@ -23,6 +23,8 @@ if(isset($_POST['login'])){
 	if($count>0){
 	 $id=$row_fetch['id'];
 	 $_SESSION['id']=$id;
+	//$id=mysqli_insert_id($conn);
+		
 	header('location:user.php');	
 	}
 	else{

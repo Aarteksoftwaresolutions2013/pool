@@ -14,7 +14,7 @@ function popup11(str){
                 if (xmlhttp.readyState==4 && xmlhttp.status==200) {
                   
                       $("#banking").html(xmlhttp.responseText); 
-					 console.log(xmlhttp.responseText);
+					 console.log("hiii"+xmlhttp.responseText);
 					
 					
 				
@@ -33,7 +33,7 @@ function popup11(str){
                 }
 				
             }
-        xmlhttp.open("GET","operation.php?b=1&"+str,true);
+        xmlhttp.open("GET","operation.php?"+str,true);
         xmlhttp.send();
         }
 	

@@ -13,12 +13,12 @@
     </div>
     <ul class="nav navbar-nav">
                 
-      <li><a href="aboutus.html"> ABOUT POOL</a>  </li>
-       <li><a href="FAQ.html">   FAQ  </a>  </li>
+      <li><a href="aboutus.php"> ABOUT POOL</a>  </li>
+       <li><a href="FAQ.php">   FAQ  </a>  </li>
          <li><a href="#">   CONCIERGE </a> </li> 
-          <li><a href="Privacy.html">     PRIVACY POLICY  </a></li>   
-             <li><a href="Terms.html">   TERMS OF USE </a></li>   
-             <li><a href="ContactUs.html">    CONTACT US</a></li>
+          <li><a href="privacy.php">     PRIVACY POLICY  </a></li>   
+             <li><a href="terms.php">   TERMS OF USE </a></li>   
+             <li><a href="contactus.php">    CONTACT US</a></li>
     </ul>
 
 
