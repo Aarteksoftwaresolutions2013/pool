@@ -8,7 +8,7 @@ if(isset($_POST['s_submit'])){
     //echo $email;
 	$pass=$_POST['s_password'];
 	
-	$sql=mysqli_query($con,"INSERT INTO personal_info (`email`,`password`)VALUES('".$email."','".$pass."')");
+	$sql=mysqli_query($con,"INSERT INTO personal_info (`email`,`password`,`first_time_login`)VALUES('".$email."','".$pass."','0')");
 	header('location:index.php?$message="form successfully submitted you can login"');
 }
 
@@ -19,13 +19,19 @@ if(isset($_POST['login'])){
 	
 	$q=mysqli_query($con,"SELECT * FROM personal_info WHERE email='".$email."' AND password='".$pass."' ");
 	$row_fetch=mysqli_fetch_assoc($q);
+	echo $row_fetch['first_name'];
 	$count=mysqli_num_rows($q);
 	if($count>0){
 	 $id=$row_fetch['id'];
 	 $_SESSION['id']=$id;
 	//$id=mysqli_insert_id($conn);
-		
-	header('location:user.php');	
+	  	       if($row_fetch['first_time_login']=="1")	
+	{	
+	header('location:index.php#');	
+	}
+		else{
+			header('location:user.php');	
+		}
 	}
 	else{
 	header('location:index.php?loginerr="invalid user"');	

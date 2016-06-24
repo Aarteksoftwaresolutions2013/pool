@@ -22,7 +22,7 @@ if(isset($_POST['u_save'])){
 	     $select1=$_POST['select1'];
 	      $select2=$_POST['select2'];
 		
-	$sql = 'UPDATE personal_info SET first_name="'.$fname.'" , last_name="'.$lname.'" , address="'.$txt.'", city="'.$city.'" , state="'.$state.'", zip="'.$zip.'", phone_no="'.$number.'", method_contact="'.$select1.'", time_contact="'.$select2.'" WHERE id="'.$_SESSION['id'].'" ';
+	$sql = 'UPDATE personal_info SET first_name="'.$fname.'" , last_name="'.$lname.'" , address="'.$txt.'", city="'.$city.'" , state="'.$state.'", zip="'.$zip.'", phone_no="'.$number.'", method_contact="'.$select1.'", time_contact="'.$select2.'",first_time_login="1" WHERE id="'.$_SESSION['id'].'" ';
 	$retval = mysqli_query($con,$sql);
 
 	//header('location:user.php?msg=Data Saved successfully');
@@ -31,7 +31,7 @@ if(isset($_POST['u_save'])){
 }
 
 		$ppp=mysqli_query($con,"SELECT * FROM personal_info WHERE id='".$_SESSION['id']."' ");
-		$project=mysqli_query($con,"SELECT * FROM create_pool ORDER BY id DESC;");
+		$project=mysqli_query($con,"SELECT * FROM create_pool WHERE login_id='".$_SESSION['id']."' ORDER BY id DESC;");
 mysqli_close($con);
 	
 ?>
@@ -138,11 +138,21 @@ mysqli_close($con);
   font-family: Arial, sans-serif;
 }
 .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th{
-    border: 0px solid #ddd;
+  border: 1px solid #fff;
 }	
 	
 </style>
+<script>
+	$(document).ready(function(){
+	$('.list-group > a').on('click',function(){
+		//alert("jjjj");
+		$('.list-group > a').removeClass('active');
+	$(this).addClass("active");
 	
+	});
+			});
+	
+</script>	
 	
 </head>
 
@@ -170,29 +180,43 @@ mysqli_close($con);
   <div class="container usercontent">
 
         <div class="row">
-     <?php if(!isset($_GET['id'])){ 
+     <?php if(isset($_GET['id'])) { 
 			?>
-            <div class="col-md-3">
-                <div class="list-group">
-                    <a href="#PERSONALINFORMATION" data-toggle="tab" class="list-group-item active">PERSONAL INFORMATION </a>
-                    <a href="#TRANSACTIONS" data-toggle="tab" class="list-group-item">TRANSACTIONS</a>
-                    <a href="#PROJECTS" data-toggle="tab" class="list-group-item">PROJECTS</a>
-                                        <a href="#" data-toggle="tab" class="list-group-item">BANK ACCOUNTS</a>
-                </div>
-            </div>
-           <?php } else{ ?>
-			
-			 <div class="col-md-3">
-                <div class="list-group">
-                    <a href="#PERSONALINFORMATION" data-toggle="tab" class="list-group-item">PERSONAL INFORMATION </a>
-                    <a href="#TRANSACTIONS" data-toggle="tab" class="list-group-item">TRANSACTIONS</a>
-                    <a id="prj" href="#PROJECTS" data-toggle="tab" class="list-group-item active">PROJECTS</a>
-                     <a href="#" data-toggle="tab" class="list-group-item">BANK ACCOUNTS</a>
-                </div>
-            </div>
 			<script>$(document).ready( function() {  $('#prj').click(); }); </script>
 			
 		 <?php	} ?>
+			
+			 <?php if(isset($_GET['vid'])) { 
+		         $vid=$_GET['vid'];
+				  echo $vid;
+
+				 if($vid==2){  ?>
+
+				  <script>$(document).ready( function() {  $('#tr').click(); }); </script>
+				<?php }
+
+				  if($vid==3){
+				?>
+				<script>$(document).ready( function() {  $('#prj').click(); }); </script>
+			 <?php	} 
+
+	    	  if($vid==4){
+				?>
+				<script>$(document).ready( function() {  $('#ba').click(); }); </script>
+
+			 <?php	} 
+	
+	
+			 }  ?>
+			
+			<div class="col-md-3">
+                <div class="list-group">
+                    <a id="pi" href="#PERSONALINFORMATION" data-toggle="tab" class="list-group-item active">PERSONAL INFORMATION </a>
+                    <a id="tr" href="#TRANSACTIONS" data-toggle="tab" class="list-group-item">TRANSACTIONS</a>
+                    <a id="prj" href="#PROJECTS" data-toggle="tab" class="list-group-item">PROJECTS</a>
+                    <a id="ba" href="#" data-toggle="tab" class="list-group-item">BANK ACCOUNTS</a>
+                </div>
+            </div>
             <div class="col-md-9 userform">
 
                 <div class="row carousel-holder">
@@ -376,7 +400,7 @@ mysqli_close($con);
                     <div id="PROJECTS" class="tab-pane fade">
                     <div class="col-md-12">
 						<table id="tableData" class="table table-bordered table-striped">
-          <thead>
+          <thead style="background-color: #03B3ED;color: #fff;">
     <tr>
               <th>Project ID</th>
               <th>POOL Title</th>
@@ -391,10 +415,10 @@ mysqli_close($con);
 			 ?>
 		
     <tr>
-              <td><?php echo $row_fetchpro[' project_identifier']; ?></td>
+              <td><a href=""><?php echo $row_fetchpro[' project_identifier']; ?></a></td>
               <td><?php echo $row_fetchpro['title']; ?></td>
               <td><?php echo "Open/Close"; ?></td>
-              <td><?php echo $row_fetchpro['min_pool_amount']; ?></td>
+              <td><?php echo $row_fetchpro['pool_amount']; ?></td>
 		      <td><?php echo $row_fetchpro['pool_amount']; ?></td>
 		      <td><?php echo $row_fetchpro['option_services']; ?></td>
             </tr>
@@ -432,7 +456,7 @@ mysqli_close($con);
 	  
 	  
                     <div id="TRANSACTIONS" class="tab-pane fade">
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="top:40px">
                       
                     
 <div class="col-lg-6">
@@ -486,13 +510,11 @@ mysqli_close($con);
 </div>
 </div>
 
-<div class="col-lg-6 usercontact">
+<div class="col-lg-6 usercontact" style="margin-bottom: 40px;">
 <div class="col-lg-4 usercontact nopaddleft nopaddright">
 <p>
-	           <input type="text" placeholder="PREFERRED TIME OF CONTACT " class="form-control" id="usr" >
-                   
-	 
-	        <a class="btn btn-default btn-lg usersubbtn" href="javascript:(0)">SAVE Data</a>
+	                         
+	        <a class="btn btn-default btn-lg usersubbtn" href="javascript:(0)">SAVE</a>
                 </p>
                 
                 </div>

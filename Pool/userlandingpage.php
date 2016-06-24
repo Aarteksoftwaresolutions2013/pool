@@ -14,7 +14,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+  <script src="js/jquery.js"></script>
     <!-- Custom CSS -->
     <link href="css/full-slider.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
@@ -48,13 +48,13 @@
 				<div class="tabs tabs-style-topline">
 					<nav>
 						<ul>
-                        
-							<li><a href="#section-topline-1" class="icon icon-home glyphicons glyphicons-user"><span> Personal Info</span></a></li>
-							<li><a href="#section-topline-2" class="icon icon-gift"><span>Transactions</span></a></li>
+							<span id="vvv"></span>
+							<li><a href="user.php" class="icon icon-home glyphicons glyphicons-user"><span> Personal Info</span></a></li>
+							<li><a href="user.php?vid=2" class="icon icon-gift"><span>Transactions</span></a></li>
 							<li><a href="#section-topline-3" class="icon icon-upload"><span>Upload</span></a></li>
-							<li><a href="#section-topline-4" class="icon icon-coffee"><span> Projects</span></a></li>
-							<li><a href="#section-topline-5" class="icon icon-config"><span> Bank Account</span></a></li>
-                            <li><a href="#section-topline-6" class="icon icon-config"><span> Create Pool</span></a></li>
+							<li><a href="user.php?vid=3" class="icon icon-coffee"><span> Projects</span></a></li>
+							<li><a href="user.php?vid=4" class="icon icon-config"><span> Bank Account</span></a></li>
+                            <li><a href="create_pool.php" class="icon icon-config"><span> Create Pool</span></a></li>
 						</ul>
 					</nav>
 					<div class="content-wrap">
@@ -80,21 +80,30 @@
     <!-- /.container -->
   <?php include "footer.php"; ?>
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  
+
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
   		<script src="js/modernizr.custom.js"></script>
         <script src="js/cbpFWTabs.js"></script>
 		<script>
+			
 			(function() {
 
 				[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
 					new CBPFWTabs( el );
+					
 				});
 
 			})();
+			
+				/*$(".tabs > nav > ul > li").on('click',function(){
+			var vv=$(".content-wrap > .content-current > p").text();
+				$('#vvv').html(vv);	
+					//alert(vv);
+			});*/
+			
 		</script>
     <!-- Script to Activate the Carousel -->
     <script>

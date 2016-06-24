@@ -406,59 +406,66 @@ http://create_pool.php?<span style='color:#03B3ED'><?php echo $_GET['pid']; ?> <
      <div id="my-tab-content" style="margin-top: 0;" class="tab-content">
 		 <div class="col-lg-12"> 
        <form action="" method="post" id="formID4" name="formID4"class="formular">
-					<span class="err" id="a_err"><?php if(isset($_GET['$message'])){ echo $_GET['$message'];} ?><br></span><br>
+					<span class="err" id="a_err"><?php if(isset($_GET['$message'])){ echo $_GET['$message'];} ?></span><br>
                         <div class="col-lg-6">
 
                         <div class="form-group">
                         <label class="lbl"> Account Nickname</label>
-    <input type="text" placeholder="Title" name="account_name" class="validate[required] form-control" id="usr41" >
+    <input type="text" placeholder="Account Nickname" name="account_name" class="validate[required] form-control" id="usr41" >
 </div>
 </div>
 <div class="col-lg-6">
 
                         <div class="form-group">
                         <label class="lbl">Name of Bank</label>
-    <input type="text" placeholder="Title" name="bank_name" class="validate[required] form-control" id="usr42" >
+    <input type="text" placeholder="Name of Bank" name="bank_name" class="validate[required] form-control" id="usr42" >
 </div>
 </div>
 <div class="col-lg-6">
 
                         <div class="form-group">
                         <label class="lbl">Routing Number</label>
-    <input type="text" placeholder="Title" name="routing_no" class="validate[required] form-control" id="r_number" >
+    <input type="text" placeholder="Routing Number" name="routing_no" class="validate[required] form-control" id="r_number" >
 </div>
 </div>
 		   <div class="col-lg-6">
 
                         <div class="form-group">
                         <label class="lbl">Routing Number Confirmation</label>
-    <input type="text" placeholder="Title" class="validate[required,equals[r_number]] form-control" id="usr44" >
+    <input type="text" placeholder="Routing Number Confirmation" class="validate[required,equals[r_number]] form-control" id="usr44" >
 </div>
 </div>
 		  <div class="col-lg-6">
 
                         <div class="form-group">
                         <label class="lbl">Account Number</label>
-    <input type="text" placeholder="Title" name="account_no" class="validate[required] form-control" id="ac_number" >
+    <input type="text" placeholder="Account Number" name="account_no" class="validate[required] form-control" id="ac_number" >
 </div>
 </div>
 		  <div class="col-lg-6">
 
                         <div class="form-group">
                         <label class="lbl">Account Number Confirmation</label>
-    <input type="text" placeholder="Title" name="" class="validate[required,equals[ac_number]] form-control" id="usr46" >
+    <input type="text" placeholder="Account Number Confirmation" name="" class="validate[required,equals[ac_number]] form-control" id="usr46" >
 </div>
 </div>
 		  <div class="col-lg-6">
 
                         <div class="form-group">
                         <label class="lbl">Account Type</label>
-    <input type="text" placeholder="Title" name="account_type" class="validate[required] form-control" id="usr47" >
+							
+							<select class="validate[required] form-control select_at" name="account_type" id="usr47">
+							<option value="" selected> Account Type</option>
+							<option>Checking</option>
+							<option>Savings</option>
+							
+						  </select>
+   
 </div>
 </div>
 		   
  <div class="col-lg-12">
-<div class="form-group" style="width:50%;margin: 0 auto;">
+<div class="form-group" style="width:100%;margin: 0 auto;">
    <a href="#" class="btn-close" aria-hidden="true"><input type="button" id="submit4" name="form_submit"  class="submit btn btn-info" value="Submit"></a>
 </div>
         </div>         		   	   
