@@ -411,15 +411,15 @@ mysqli_close($con);
             </tr>
   </thead>
           <tbody>	<?php while($row_fetchpro=mysqli_fetch_assoc($project))
-		   {
+		   { 
 			 ?>
 		
     <tr>
               <td><a href=""><?php echo $row_fetchpro[' project_identifier']; ?></a></td>
               <td><?php echo $row_fetchpro['title']; ?></td>
-              <td><?php echo "Open/Close"; ?></td>
-              <td><?php echo $row_fetchpro['pool_amount']; ?></td>
-		      <td><?php echo $row_fetchpro['pool_amount']; ?></td>
+              <td><?php $current_date=date("Y-m-d"); $close_date=$row_fetchpro['pool_close_date']; if($current_date<$close_date){  echo "Open"; }else{ echo "Close"; } ?></td>
+              <td><?php echo $row_fetchpro['pool_amount'];  ?></td>
+		      <td>0<?php //echo $row_fetchpro['pool_amount']; ?></td>
 		      <td><?php echo $row_fetchpro['option_services']; ?></td>
             </tr>
 			  <?php } ?>
@@ -436,7 +436,7 @@ mysqli_close($con);
         </script>
         <script type="text/javascript">
 
-  var _gaq = _gaq || [];
+  /*var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36251023-1']);
   _gaq.push(['_setDomainName', 'jqueryscript.net']);
   _gaq.push(['_trackPageview']);
@@ -446,7 +446,7 @@ mysqli_close($con);
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
+*/
 </script>
 						
                       </div>

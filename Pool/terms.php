@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start(); 
+      include "main.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +40,6 @@
   
 </div>
  
-<!-- Modal -->
 <a href="#" class="modal" id="modal-one" aria-hidden="true">
   </a>
   <div class="modal-dialog">
@@ -57,50 +58,54 @@
         </ul>
         <div id="my-tab-content" class="tab-content">
             <div class="tab-pane active" id="red">
+		 <form action="" method="post" id="formID1" class="formular">	
+			<span class="err"><?php if(isset($_GET['$message'])){ echo $_GET['$message'];} if(isset($_GET['loginerr'])){ echo $_GET['loginerr'];}if(isset($_GET['herr1'])){ echo $_GET['herr1'];} ?><br></span><br>
             <div class="form-group">
-    <input type="text" placeholder="EMAIL ADDRESSS" class="form-control" id="usr" >
+    <input type="text" placeholder="EMAIL ADDRESSS" name="email" class="validate[required,custom[email]] form-control" id="usr1" >
     <span class="email"></span>
 </div>
 <div class="form-group">
-    <input type="password" placeholder="PASSWORD" class="form-control" id="pwd">
+    <input type="password" placeholder="PASSWORD" name="password" class="validate[required] form-control" id="pwd1">
      <span class="pass"></span>
 </div>
 
 
 <div class="form-group">
-    <input type="submit" class="btn btn-info" value="LOGIN">
+    <input type="submit" id="submit1" name="login" class="submit1 btn btn-info" value="LOGIN">
 </div>
                  <div class="modal-footer">
       <a href="#modal-two">RESET YOUR PASSWORD</a>
     </div>
-            </div>
+        </form>    </div>
             
             
             <div class="tab-pane" id="orange">
-            
+            <form action="" method="post" id="formID2" class="formular">
+					<span class="err" id="a_err"><?php if(isset($_GET['$message'])){ echo $_GET['$message'];} ?><br></span><br>
                         <div class="form-group">
-    <input type="text" placeholder="EMAIL ADDRESSS" class="form-control" id="usr" >
+    <input type="text" placeholder="EMAIL ADDRESSS" name="s_email" class="validate[required,custom[email]] form-control" id="usr2" >
         <span class="email"></span>
     
 </div>
 <div class="form-group">
-    <input type="password" placeholder="PASSWORD" class="form-control" id="pwd">
+    <input type="password" placeholder="PASSWORD" name="s_password" class="validate[required] form-control" id="spwd">
          <span class="pass"></span>
 </div>
 <div class="form-group">
-    <input type="password" placeholder="CONFIRM PASSWORD" class="form-control" id="pwd">
+    <input type="password" placeholder="CONFIRM PASSWORD" name="confirm_password" class="form-control validate[required,equals[spwd]]" id="cpwd">
          <span class="rght"></span>
 </div>
 
 <div class="form-group">
-    <input type="submit" class="btn btn-info" value="CREATE YOUR ACCOUNT">
+    <input type="submit" id="submit2" name="s_submit" class="submit2 btn btn-info" value="CREATE YOUR ACCOUNT">
 </div>
                  <div class="modal-footer">
                  BY CREATING AN ACCOUNT YOU ACKNOWLEDGE THAT YOU 
-      <a href="#modal-two">ACCEPT THE TERMS & CONDITIONS</a>
+      <a href="#">ACCEPT THE TERMS & CONDITIONS</a>
     </div>
                 
-            </div>
+   </form>   
+			</div>
             
             
             
@@ -117,18 +122,26 @@
   </a>
   <div class="modal-dialog">
     <div class="modal-header">
-      <h2>Modal in TWO</h2>
+      
       <a href="#" class="btn-close" aria-hidden="true">×</a>
     </div>
     <div class="modal-body">
-      <p>Two modal example here! :D</p>
+    <h2>Forgot your password?</h2>
+     <div id="my-tab-content" class="tab-content">
+       <div class="form-group">
+    <input type="text" placeholder="EMAIL ADDRESSS" class="form-control" id="usr" >
+        <span class="email"></span>
+        </div>
+    
+</div>
     </div>
     <div class="modal-footer">
-      <a href="#" class="btn">Nice!</a>
+      <a href="#" class="btn">RESET YOUR PASSWORD</a>
     </div>
   </div>
 
 <!-- /Modal2 -->
+
     <!-- Full Page Image Background Carousel Header -->
     <header class="terms-header">
         <div class="container">
