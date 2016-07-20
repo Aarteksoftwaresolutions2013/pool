@@ -1,40 +1,3 @@
-<?php session_start();
-if(!isset($_SESSION['id'])){
-	
-	header('location:index.php');
-}
-
-else{
-	
-	include "config.php";
-if(isset($_GET['pid'])){
-	//echo $_GET['pid'];  
-	$p_data=mysqli_query($con,"SELECT * FROM create_pool WHERE ` project_identifier`='".$_GET['pid']."'");
-	$row_fetchp=mysqli_fetch_assoc($p_data);
-	//echo "title=".$row_fetchp['title'];   
-
-	if(isset($_POST['submit'])){
-
-		$pool_amount=$_POST['pool_amount'];
-	    $card=$_POST['card'];
-		$card_number=$_POST['card_number'];
-		$csc=$_POST['csc'];
-		$Ex_date=$_POST['Ex_date'];
-		$fname=$_POST['fname'];
-		$lname=$_POST['lname'];
-		$address=$_POST['address'];
-		$city=$_POST['city'];
-		$state=$_POST['state'];
-		$zip=$_POST['zip'];
-echo "abc=". $pool_amount;	
-		
-	$sql=mysqli_query($con,"INSERT INTO `payment` (`pool_amount`,`project_id`,`card`,`card_number`,`csc`,`expiration_date`,`first_name`,`last_name`,`address`,`city`,`state`,`zip`)VALUES('".$pool_amount."','".$_GET['pid']."','".$card."','".$card_number."','".$csc."','".$Ex_date."','".$fname."','".$lname."','".$address."','".$city."','".$state."','".$zip."')");		
-	header('location:user.php?pid1="'.$_GET['pid'].'"');
-	//echo "idd=".$password;
-	}
-	}
-mysqli_close($con);
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -115,149 +78,78 @@ mysqli_close($con);
 </div>
  
 <!-- Modal -->
-	<form action="" method="post" id="formID4" name="formID4"class="formular">
 <div class="container-fluid user">
   <div class="container usercontent">
 
         <div class="row">
 
             
- 
+
             <div class="col-md-9 userform createpool">
 
                 <div class="row carousel-holder">
   
   
                     <div class="col-md-12">
-                      <div class="col-md-12">  <h2>Payment</h2></div>
-                     <div class="col-md-12  nopad">
-                      <div class="col-lg-6"><label class="control-label">Title</label></div>
-                      <div class="col-lg-6 result"><?php echo $row_fetchp['title'] ; ?></div>
-                      <div class="clearfix"></div>
-
-                     <div class="col-lg-6"><label class="control-label">Total Pool Amount</label></div>
-                       <div class="col-lg-6 result"><?php echo $row_fetchp['pool_amount'] ; ?></div>
-                       <div class="clearfix"></div>
-
-                       <div class="col-lg-6"><label class="control-label">Pool Close Date</label></div>
-                       <div class="col-lg-6 result" ><?php echo $row_fetchp['pool_close_date'] ; ?></div>
-                       <div class="clearfix"></div>
-
-                       <div class="col-lg-6"><label class="control-label">Minimum Pool Amount For Each Participant</label></div>
-                       <div class="col-lg-6 "><?php echo $row_fetchp['min_pool_amount'] ; ?></div>
-                       </div>
-                     <div class="clearfix"></div>
-                        <hr>
+                      <div class="col-md-12">  <h2>create a pool </h2></div>
+                        
 <div class="col-lg-6">
 
                         <div class="form-group">
-                          <label>Your Pool Amount</label>
-    <input type="text" name="pool_amount"placeholder="Your Pool Amount" class="form-control" id="usr" >
+                        <label> Title</label>
+    <input type="text" placeholder="Title" class="form-control" id="usr" >
+</div>
+</div>
+
+<div class="col-lg-6 ">
+                        <div class="form-group">
+                        <label>Upload Image</label>
+       <input id="uploadFile" placeholder="Choose File" disabled="disabled" class="form-control" />
+<div class="fileUpload btn btn-primary">
+    <span>Upload</span>
+    <input id="uploadBtn" type="file" class="upload" />
+</div>
     
-    
-                       
+</div>
+</div>
+<div class="col-lg-6">
+                        <div class="form-group">
+                        <label>Pool Close Date</label>
+                      
+                    <input type="date" placeholder="Pool Close Date" class="form-control" id="usr" >
 </div>
 </div>
 <div class="col-lg-6 nopad ">
 <div class="col-lg-6 ">
                         <div class="form-group">
-                        <label>Select Card</label>
-                       <select class="form-control" name="card" id="sel1">
-    <option selected="">Select Card </option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-  </select>
-                      
+                        <label>Pool Amount</label>
+    <input type="text" placeholder="Pool Amount" class="form-control" id="usr" >
 </div>
 </div>
 
 <div class="col-lg-6 ">
                         <div class="form-group">
-                       
-                        <label>Card Number</label>
-                      
-                    <input type="text" name="card_number" placeholder="Card Number" class="form-control" id="usr" >
-
+                        <label>Minimum Pool Amount </label>
+    <input type="text" placeholder="Minimum Pool Amount" class="form-control" id="usr" >
+    <span>For Each Participant</span>
 </div>
 </div>
 </div>
-
-    
-<div class="clearfix"></div>
 
 <div class="col-lg-6">
-                      <div class="col-lg-4 nopad ">
+                        
+                        
                         <div class="form-group">
-                        <label>CSC</label>
-                      
-                    <input type="text" name="csc" placeholder="CSC" class="form-control" id="usr" >
-</div>
-</div>
-
-<div class="col-lg-8 ">
-                        <div class="form-group">
-                        <label>Expiration date</label>
-                        <div class="col-lg-5 nopad" style="margin-right:10px;">
-    <select class="form-control" name="Ex_date" id="sel1">
-    <option selected="">01</option>
+                        <label>Option Services</label>
+                          <select class="form-control" id="sel1">
+    <option selected>Option Services </option>
     <option>2</option>
     <option>3</option>
     <option>4</option>
   </select>
-    </div>
-     <div class="col-lg-6 nopad">
-     <select class="form-control" id="sel1">
-    <option selected="">2016</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-  </select>
-     </div>
-</div>
-</div>
-
-
-
-</div>
-<div class="col-lg-6 nopad ">
-<div class="col-lg-6 ">
-                        <div class="form-group">
-                        <label>First Name</label>
-    <input type="text" name="fname" placeholder="First Name" class="form-control" id="usr" >
-</div>
-</div>
-
-<div class="col-lg-6 ">
-                        <div class="form-group">
-                        <label>Last Name</label>
-    <input type="text" name="lname" placeholder="Last Name" class="form-control" id="usr" >
-</div>
-</div>
-</div>
-<div class="col-lg-12">
-                        
-                        
-                        <div class="form-group">
-                        <label>Address</label>
-    <textarea rows="3" name="address" class="form-control"  > Address</textarea>
    
 </div>
-      </div>                  
-<div class="col-lg-6 nopad">
                         
-       <div class="col-lg-6">                 
-                        <div class="form-group">
-                        <label>City</label>
-    <input type="text" name="city" placeholder="City" class="form-control" id="usr" >
-   </div>
-</div>
-         <div class="col-lg-6">                 
-                        <div class="form-group">
-                        <label>State</label>
-    <input type="text" name="state" placeholder="State" class="form-control" id="usr" >
-   </div>
-</div>               
 
 </div>
 
@@ -265,33 +157,70 @@ mysqli_close($con);
                         
                         
                         <div class="form-group">
-                     <label>Zip</label>
-    <input type="text" name="zip" placeholder="Zip" class="form-control" id="usr" >
+                       <label>Prefered Method of Contact</label>
+                        <select class="form-control" id="sel1">
+    <option selected> PREFERED METHOD OF CONTACT</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+  </select>
                          
    
 </div>
                         
 
 </div>
+
+<div class="col-lg-6">
+                        <div class="form-group">
+                         <label>Where do you want the pool funds sent to</label>
+                         
+                    
+                     <div class="radio radio-info radio-inline">
+                        <input type="radio" id="amount1" value="option1" name="amount" checked>
+                        <label for="inlineRadio1"> Saved Banking </label>
+                    </div>
+                    <div class="radio radio-inline">
+                        <input type="radio" id="amount2" value="option2" name="amount">
+                        <label for="inlineRadio2"> Add New </label>
+                    </div>
+                          
+   
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="col-lg-6 usercontact">
 <div class="col-lg-4 usercontact nopaddleft nopaddright">
 <p>
-           <input type="submit" class="submit btn btn-default btn-lg usersubbtn" name="submit" id="submit" value="Save">
-	    
+                    <a class="btn btn-default btn-lg usersubbtn" href="#">SUBMIT</a>
                 </p>
                 
                 </div>
                 <div class="col-lg-5 usercontact  nopaddleft nopaddright">
-                <p>	<input type="reset" value="RESET" class="btn btn-default btn-lg userreset" >
-                  
+                <p>
+                    <a class="btn btn-default btn-lg userreset" href="#">CLEAR</a>
                 </p>
                 </div>
                 </div>
-</div>
-
-
-</div>
-
+                
+                   
+                    
+                    
+                    
 </div>
                 </div>
 
@@ -304,7 +233,7 @@ mysqli_close($con);
     </div>
 </div><!-- /Modal -->
 
-</form>
+
        
     <!-- /.container -->
 <footer>
@@ -322,7 +251,7 @@ mysqli_close($con);
                 
      <li><a href="aboutus.html"> ABOUT POOL</a>  </li>
        <li><a href="FAQ.html">   FAQ  </a>  </li>
-         <li><a href="Concierge.html">   CONCIERGE </a> </li> 
+         <li><a href="#">   CONCIERGE </a> </li> 
           <li><a href="Privacy.html">     PRIVACY POLICY  </a></li>   
              <li><a href="Terms.html">   TERMS OF USE </a></li>   
              <li><a href="ContactUs.html">    CONTACT US</a></li>
@@ -383,4 +312,3 @@ mysqli_close($con);
 </body>
 
 </html>
-<?php } ?>
