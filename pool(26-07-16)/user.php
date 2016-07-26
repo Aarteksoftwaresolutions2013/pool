@@ -33,8 +33,7 @@ if(isset($_POST['u_save'])){
 		$ppp=mysqli_query($con,"SELECT * FROM personal_info WHERE id='".$_SESSION['id']."' ");
 		$project=mysqli_query($con,"SELECT * FROM create_pool WHERE login_id='".$_SESSION['id']."' ORDER BY id DESC;");
 
-	
-	mysqli_close($con);
+//mysqli_close($con);
 	
 ?>
 
@@ -160,7 +159,16 @@ if(isset($_POST['u_save'])){
 			});
 	
 </script>	
+<?php  if(isset($_GET['pid1'])){ ?>
 	
+	<script>
+		$(document).ready(function(){				
+		$("#prj").click();
+		  });
+	</script>
+		
+	<?php
+	 }	?>
 </head>
 
 <body>
@@ -175,7 +183,6 @@ if(isset($_POST['u_save'])){
  
 <!-- Modal -->
 	<?php
-	
 	
 	while($row_fetch=mysqli_fetch_assoc($ppp)){
 		
@@ -426,11 +433,39 @@ if(isset($_POST['u_save'])){
 			 ?>
 		
     <tr>
-              <td><a href="payment.php?pid=<?php echo $row_fetchpro[' project_identifier']; ?>"><?php echo $row_fetchpro[' project_identifier']; ?></a></td>
+              <td><?php $current_date=date("Y-m-d"); $close_date=$row_fetchpro['pool_close_date']; if($current_date<$close_date){ ?><a href="payment.php?pid=<?php echo $row_fetchpro[' project_identifier']; ?>">
+				  <?php echo $row_fetchpro[' project_identifier']; ?></a><?php }else{ ?> <a><?php echo $row_fetchpro[' project_identifier']; ?></a><?php } ?></td>
+		
               <td><?php echo $row_fetchpro['title']; ?></td>
               <td><?php $current_date=date("Y-m-d"); $close_date=$row_fetchpro['pool_close_date']; if($current_date<$close_date){  echo "Open"; }else{ echo "Close"; } ?></td>
               <td><?php echo $row_fetchpro['pool_amount'];  ?></td>
-		      <td>0<?php if(isset($_GET['pid1'])){$payment=mysqli_query($con,"SELECT * FROM payment WHERE project_id='".$_GET['pid1']."' ");$row_fetch1=mysqli_fetch_assoc($payment); echo $row_fetch1['pool_amount']; } ?></td>
+		      <td><?php  //if(isset($_GET['pid1'])){
+		  // $payment=mysqli_query($con,"SELECT SUM(`pool_amount`) FROM payment WHERE project_id='".$_GET['pid1']."'");
+		 $payment=mysqli_query($con,"SELECT * FROM payment WHERE project_id='".$row_fetchpro[' project_identifier']."'");
+			//$row_fetch1=mysqli_fetch_assoc($payment);
+				 $count=mysqli_num_rows($payment); 
+			//$amount=$row_fetch1['pool_amount'];
+				// print( $amount);
+			$arr=array();
+			while($row_fetch1=mysqli_fetch_assoc($payment)){
+				$amount=$row_fetch1['pool_amount'];
+				//$sum=intval($amount);
+				array_push($arr,$amount);
+				
+				//echo var_dump($sum);
+				//$sums=array_sum($amount);
+				// echo var_dump($sums);
+				
+			 }$sums=array_sum($arr); print($sums);
+			// else { echo "$0" ;}	
+				/* foreach($row_fetch1 as $amount){
+				 echo "$".$amount;
+				 }*/
+		//while($row_fetch1=mysqli_fetch_assoc($payment)){
+			//$amount=$row_fetch1['pool_amount'];
+			// echo "+";
+		// echo $amount; }
+	//} //else { echo "$0" ;}	 ?></td>
 		      <td><?php echo $row_fetchpro['option_services']; ?></td>
             </tr>
 			  <?php } ?>

@@ -29,7 +29,7 @@ if(isset($_GET['pid'])){
 echo "abc=". $pool_amount;	
 		
 	$sql=mysqli_query($con,"INSERT INTO `payment` (`pool_amount`,`project_id`,`card`,`card_number`,`csc`,`expiration_date`,`first_name`,`last_name`,`address`,`city`,`state`,`zip`)VALUES('".$pool_amount."','".$_GET['pid']."','".$card."','".$card_number."','".$csc."','".$Ex_date."','".$fname."','".$lname."','".$address."','".$city."','".$state."','".$zip."')");		
-	header('location:user.php?pid1="'.$_GET['pid'].'"');
+	header('location:user.php?pid1='.$_GET["pid"].'');
 	//echo "idd=".$password;
 	}
 	}
